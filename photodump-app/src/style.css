@@ -1,0 +1,75 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* color-scheme: light dark; */
+  color: #E5D0AC;
+  background-color: #FEF9E1;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body, #app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.top-bar {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  height: 80px;
+  background-color: #6D2323;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+  padding: 0 1rem;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+.top-bar h1 {
+  margin: 0;
+  color: white;
+}
+
+.profile-icon {
+  width: 60px;
+  height: 60px;
+  background-color: #FEF9E1;
+  border-radius: 50%;
+  right: 30px;
+  position: absolute;
+  border: none;
+  transition: all 1s;
+}
+
+.profile-icon:hover {
+  transform: scale(1.2);
+}
