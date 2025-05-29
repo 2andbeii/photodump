@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref, onMounted } from 'vue'
+import { reactive, ref, onMounted, computed } from 'vue'
 import Swiper from 'swiper/bundle'
 import 'swiper/css/bundle'
 import { useRouter } from 'vue-router'
@@ -47,9 +47,24 @@ async function fetchPostsAndInitSwiper() {
     console.error('Failed to load posts:', err)
   }
 }
-
 onMounted(() => {
-  fetchPostsAndInitSwiper()
+  // fetchPostsAndInitSwiper()
+      // profile_pic_url.value = data.profile_pic_url
+})
+
+const profile_pic_url = ref('') // or e.g., 'https://example.com/myprofile.jpg'
+
+const defaultProfilePic = '/src/images/defaultProfile.png'
+
+// Compute style with fallback
+const profileIconStyle = computed(() => {
+  const imgUrl = profile_pic_url.value || defaultProfilePic
+  return {
+    backgroundImage: `url(${imgUrl})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+  }
 })
 
 
@@ -59,7 +74,7 @@ function redirect_to_profile() {
 }
 
 function redirect_to_add_post() {
-  
+  router.push('/add-post')
 }
 
 
@@ -68,7 +83,13 @@ function redirect_to_add_post() {
 <template>
   <div class="top-bar">
     <h1>{{ appName }}</h1>
-    <button class="profile-icon" @click="redirect_to_profile"></button>
+    <button
+      class="profile-icon"
+      :style="profileIconStyle"
+      @click="redirect_to_profile"
+      aria-label="Profile"
+    ></button>
+
   </div>
 
   <div class="all-posts">
@@ -109,4 +130,17 @@ function redirect_to_add_post() {
   font-size: 3em;
   color: #FEF9E1;
 }
+
+.profile-icon {
+  width: 60px;
+  height: 60px;
+  border: none;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  cursor: pointer;
+}
+
 </style>

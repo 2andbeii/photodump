@@ -9,9 +9,9 @@ const appName = ref('2andbeii')
 const username = ref('')
 const password = ref('')
 
-function handleLogin() {
+function handle_login() {
   alert(`Logging in as: ${username.value}`)
-  // Add your login logic here
+  router.push('./home')  // if user is found in db
 }
 
 function redirect_to_register() {
@@ -25,7 +25,7 @@ function redirect_to_register() {
         <h1>{{ appName }}</h1>
     </div>
     <div class="login-section">
-        <form @submit.prevent="handleLogin" class="login-form">
+        <form @submit.prevent="handle_login" class="login-form">
             <h2>Login</h2>
             <label for="username">Username</label>
             <input

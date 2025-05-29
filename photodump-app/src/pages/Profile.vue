@@ -11,16 +11,20 @@ const following = ref(5)
 
 const username = ref('twoandbeii')
 
+const profile_pic_url = ref(null)
+
 onMounted(() => {
   console.log('Profile mounted')
+  // after calling backend to retreive
+  // profile_pic_url.value = data.profile_pic_url // this is a full image URL
 })
-
-function change_profile_pic() {
-
-}
 
 function redirect_to_edit_profile(){
   router.push('/edit-profile')
+}
+
+function redirect_to_home() {
+  router.push('/home')
 }
 
 </script>
@@ -28,13 +32,34 @@ function redirect_to_edit_profile(){
 <template>
   <div class="top-bar">
     <h1>{{ appName }}</h1>
+    <button class="home-icon" @click="redirect_to_home" aria-label="Home">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        width="24"
+        height="24"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M3 12l9-9 9 9M4 10v10a1 1 0 001 1h3m10-11v11a1 1 0 001 1h3m-10-6h4" />
+      </svg>
+    </button>
   </div>
   <div class="profile-username"> @{{ username }}</div>
   <div class="profile-section">
     <div class="profile-pic">
-      <img src="/Users/zx/OneDrive - ComfortDelGro Corporation Limited/Pictures/Screenshots/Screenshot 2024-05-28 165021.png"/>
-      <button class="change-profile-pic" @click="change_profile_pic">Change Profile Picture</button>
-      <button class="edit-profile" @click="redirect_to_edit_profile">Edit Info</button>
+      <img
+        v-if="profile_pic_url"
+        :src="profile_pic_url"
+        alt="Profile Picture from Backend"
+      />
+      <img
+        v-else
+        src="/src/images/defaultProfile.png"
+        alt="Default Profile Picture"
+      />
+      <button class="edit-profile" @click="redirect_to_edit_profile">Edit Profile</button>
     </div>
 
     <div class="profile-stats">
@@ -53,6 +78,8 @@ function redirect_to_edit_profile(){
     </div>
 
   </div>
+
+  <div class="divider"></div>
 </template>
 
 <style lang="css">
@@ -94,7 +121,7 @@ body {
   object-fit: cover;
 }
 
-.change-profile-pic, .edit-profile {
+.edit-profile {
   margin-top: 1rem;
   font-size: 0.9rem;
   background-color: #f4f1de;
@@ -106,6 +133,7 @@ body {
   text-align: center;
   width: 100%;
   max-width: 200px;
+  font-weight: 600;
 }
 
 .profile-stats {
@@ -151,5 +179,23 @@ body {
     justify-content: space-between;
   }
 }
+
+.divider {
+  margin-top: 10px;
+  border-bottom: 2px solid #6d2323;
+}
+
+.home-icon {
+  width: 60px;
+  height: 60px;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+}
+.home-icon svg {
+  stroke: #FEF9E1;
+}
+
 
 </style>

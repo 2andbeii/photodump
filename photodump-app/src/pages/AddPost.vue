@@ -8,7 +8,7 @@ const appName = ref('2andbeii')
 const page = ref('add post')
 
 onMounted(() => {
-  fetchPostsAndInitSwiper()
+  // fetchPostsAndInitSwiper()
 })
 
 

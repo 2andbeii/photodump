@@ -10,9 +10,9 @@ const username = ref('')
 const password = ref('')
 const email = ref('')
 
-function handleRegister() {
-  alert(`Logging in as: ${username.value}`)
-  // Add your register logic here
+function handle_register() {
+  alert(`registering in as: ${username.value}`)
+  router.push('/login')   // once user is created
 }
 
 function redirect_to_login() {
@@ -26,7 +26,7 @@ function redirect_to_login() {
         <h1>{{ appName }}</h1>
     </div>
     <div class="register-section">
-        <form @submit.prevent="handleregister" class="register-form">
+        <form @submit.prevent="handle_register" class="register-form">
         <h2>Register</h2>
         <label for="username">Username</label>
         <input

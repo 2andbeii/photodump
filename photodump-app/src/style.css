@@ -59,7 +59,7 @@ html, body, #app {
   color: white;
 }
 
-.profile-icon {
+.profile-icon, .home-icon {
   width: 60px;
   height: 60px;
   background-color: #FEF9E1;
@@ -70,6 +70,6 @@ html, body, #app {
   transition: all 1s;
 }
 
-.profile-icon:hover {
+.profile-icon:hover, .home-icon:hover {
   transform: scale(1.2);
 }
